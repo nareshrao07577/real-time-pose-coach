@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Camera, CameraOff, CheckCircle, AlertCircle, Activity } from "lucide-react";
-import { pipeline, env } from '@huggingface/transformers';
-
-// Configure transformers.js
-env.allowLocalModels = false;
-env.useBrowserCache = false;
+import { Camera, CameraOff, CheckCircle, AlertCircle, Activity, RefreshCw } from "lucide-react";
+import { usePoseDetection } from "@/hooks/usePoseDetection";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface PoseDetectionProps {
   exerciseName: string;
@@ -14,94 +11,35 @@ interface PoseDetectionProps {
 }
 
 const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isActive, setIsActive] = useState(false);
-  const [feedback, setFeedback] = useState<string>("Position yourself in frame to begin");
-  const [poseQuality, setPoseQuality] = useState<"good" | "warning" | "error">("warning");
-  const [repCount, setRepCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [stream, setStream] = useState<MediaStream | null>(null);
+  const [sessionAccuracy, setSessionAccuracy] = useState(0);
+  
+  const {
+    videoRef,
+    canvasRef,
+    isActive,
+    isLoading,
+    error,
+    feedback,
+    poseQuality,
+    repCount,
+    accuracy,
+    startCamera,
+    stopCamera
+  } = usePoseDetection({
+    exerciseName,
+    onRepComplete: (count, repAccuracy) => {
+      setSessionAccuracy(prev => (prev + repAccuracy) / 2);
+    },
+    onFeedback: (feedbackText, quality) => {
+      // Additional feedback handling if needed
+    }
+  });
 
-  const startCamera = async () => {
-    try {
-      setIsLoading(true);
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 }
-      });
-      
-      if (videoRef.current) {
-        videoRef.current.srcObject = mediaStream;
-        videoRef.current.play();
-      }
-      
-      setStream(mediaStream);
-      setIsActive(true);
-      setFeedback("Camera active - AI analyzing your form...");
-    } catch (error) {
-      console.error("Error accessing camera:", error);
-      setFeedback("Camera access denied. Please enable camera permissions.");
-    } finally {
-      setIsLoading(false);
+  const handleRetryCamera = () => {
+    if (error) {
+      startCamera();
     }
   };
-
-  const stopCamera = () => {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
-      setStream(null);
-    }
-    setIsActive(false);
-    setFeedback("Camera stopped");
-  };
-
-  const simulateAIFeedback = () => {
-    // Simulate AI feedback for demo purposes
-    const feedbackMessages = {
-      good: [
-        "Perfect form! Keep it up!",
-        "Excellent posture detected",
-        "Great alignment - continue!",
-        "Outstanding technique!"
-      ],
-      warning: [
-        "Adjust your back position slightly",
-        "Keep your core engaged",
-        "Watch your knee alignment",
-        "Maintain steady breathing"
-      ],
-      error: [
-        "Incorrect form detected - check your posture",
-        "Risk of injury - adjust your position",
-        "Form needs correction",
-        "Please reset your starting position"
-      ]
-    };
-
-    const qualities: Array<"good" | "warning" | "error"> = ["good", "good", "warning", "good"];
-    const randomQuality = qualities[Math.floor(Math.random() * qualities.length)];
-    const messages = feedbackMessages[randomQuality];
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-    setPoseQuality(randomQuality);
-    setFeedback(randomMessage);
-
-    if (randomQuality === "good" && Math.random() > 0.7) {
-      setRepCount(prev => prev + 1);
-    }
-  };
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    
-    if (isActive) {
-      interval = setInterval(simulateAIFeedback, 2000);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isActive]);
 
   const getFeedbackColor = () => {
     switch (poseQuality) {
@@ -121,6 +59,25 @@ const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
 
   return (
     <div className="space-y-6">
+      {/* Error Alert */}
+      {error && (
+        <Alert className="border-destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription className="flex items-center justify-between">
+            <span>{error}</span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRetryCamera}
+              className="ml-4"
+            >
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Retry
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
+
       {/* Camera Feed */}
       <Card className="relative overflow-hidden bg-gradient-card">
         <div className="aspect-video bg-muted/20 relative">
@@ -128,21 +85,23 @@ const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
             <>
               <video
                 ref={videoRef}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover mirror"
                 autoPlay
                 muted
                 playsInline
+                style={{ transform: 'scaleX(-1)' }}
               />
               <canvas
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full pointer-events-none"
+                width={640}
+                height={480}
+                style={{ transform: 'scaleX(-1)' }}
               />
-              {/* Pose overlay points (simulated) */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/2 w-3 h-3 bg-primary rounded-full animate-pulse-glow" />
-                <div className="absolute top-1/3 left-1/3 w-3 h-3 bg-primary rounded-full animate-pulse-glow" />
-                <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-primary rounded-full animate-pulse-glow" />
-                <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-success rounded-full animate-pulse-glow" />
+              {/* Live indicator */}
+              <div className="absolute top-4 left-4 flex items-center gap-2 bg-destructive/80 text-destructive-foreground px-3 py-1 rounded-full">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium">LIVE</span>
               </div>
             </>
           ) : (
@@ -150,6 +109,7 @@ const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
               <div className="text-center">
                 <Camera className="w-16 h-16 mx-auto mb-4 opacity-50" />
                 <p>Camera feed will appear here</p>
+                <p className="text-sm mt-2">Click "Start Camera" to begin pose detection</p>
               </div>
             </div>
           )}
@@ -197,16 +157,22 @@ const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
             <div className={`p-4 rounded-lg bg-muted/20 ${getFeedbackColor()}`}>
               <p className="font-medium">{feedback}</p>
             </div>
-            <div className="grid grid-cols-2 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-primary">{repCount}</div>
                 <div className="text-sm text-muted-foreground">Reps</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-success">
-                  {Math.round((repCount / Math.max(1, repCount + 2)) * 100)}%
+                  {Math.round(accuracy)}%
                 </div>
-                <div className="text-sm text-muted-foreground">Accuracy</div>
+                <div className="text-sm text-muted-foreground">Form Score</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-secondary">
+                  {Math.round(sessionAccuracy)}%
+                </div>
+                <div className="text-sm text-muted-foreground">Session Avg</div>
               </div>
             </div>
           </div>

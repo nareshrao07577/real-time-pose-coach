@@ -1,0 +1,861 @@
+[
+  {
+    "id": "1",
+    "title": "Push-ups",
+    "duration": "5 min",
+    "difficulty": "Beginner",
+    "description": "Perfect your push-up form with real-time AI feedback on arm position and body alignment.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Start in plank position, lower body until chest nearly touches floor, push back up",
+    "tags": ["chest", "arms", "core"],
+    "pose_template": {
+      "key_angles": {
+        "elbow": { "min": 45, "max": 90 },
+        "shoulder": { "min": 70, "max": 120 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "2",
+    "title": "Squats",
+    "duration": "8 min",
+    "difficulty": "Beginner",
+    "description": "Master proper squat technique with AI monitoring of knee alignment and depth.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Stand with feet shoulder-width apart, lower down as if sitting in chair, return to standing",
+    "tags": ["legs", "glutes", "quads"],
+    "pose_template": {
+      "key_angles": {
+        "knee": { "min": 70, "max": 120 },
+        "hip": { "min": 60, "max": 110 }
+      },
+      "keypoints": ["nose", "left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "3",
+    "title": "Planks",
+    "duration": "10 min",
+    "difficulty": "Intermediate",
+    "description": "Hold perfect plank position with AI guidance on core engagement and spine alignment.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Hold plank position with straight line from head to heels",
+    "tags": ["core", "stability", "endurance"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "4",
+    "title": "Deadlifts",
+    "duration": "12 min",
+    "difficulty": "Advanced",
+    "description": "Execute proper deadlift form with AI analysis of hip hinge movement and back position.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Hip hinge movement, keep back straight, lift with legs and glutes",
+    "tags": ["back", "legs", "glutes", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 45, "max": 90 },
+        "spine": { "min": 170, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "5",
+    "title": "Lunges",
+    "duration": "6 min",
+    "difficulty": "Intermediate",
+    "description": "Improve balance and form with AI feedback on lunge depth and knee tracking.",
+    "image": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Step forward, lower back knee, keep front knee over ankle",
+    "tags": ["legs", "balance", "glutes"],
+    "pose_template": {
+      "key_angles": {
+        "front_knee": { "min": 80, "max": 100 },
+        "back_knee": { "min": 80, "max": 110 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "6",
+    "title": "Mountain Climbers",
+    "duration": "4 min",
+    "difficulty": "Advanced",
+    "description": "Maintain proper form during high-intensity movement with real-time pose analysis.",
+    "image": "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Plank position, alternate bringing knees to chest rapidly",
+    "tags": ["cardio", "core", "legs"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "7",
+    "title": "Burpees",
+    "duration": "5 min",
+    "difficulty": "Advanced",
+    "description": "Full body explosive movement with AI monitoring of each phase.",
+    "image": "https://images.unsplash.com/photo-1567013127542-490d757e51cd?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Squat, jump back to plank, push-up, jump forward, jump up",
+    "tags": ["full-body", "cardio", "explosive"],
+    "pose_template": {
+      "key_angles": {
+        "squat_knee": { "min": 70, "max": 120 },
+        "plank_spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "8",
+    "title": "Pull-ups",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Master pull-up technique with AI feedback on grip and range of motion.",
+    "image": "https://images.unsplash.com/photo-1544033527-78c1f3e3fe16?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Hang from bar, pull body up until chin over bar, lower controlled",
+    "tags": ["back", "arms", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "elbow": { "min": 30, "max": 160 },
+        "shoulder": { "min": 45, "max": 180 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "9",
+    "title": "Dips",
+    "duration": "6 min",
+    "difficulty": "Intermediate",
+    "description": "Perfect tricep dips with AI analysis of arm position and depth.",
+    "image": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Support body weight on bars, lower down, push back up",
+    "tags": ["triceps", "chest", "shoulders"],
+    "pose_template": {
+      "key_angles": {
+        "elbow": { "min": 45, "max": 90 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "10",
+    "title": "High Knees",
+    "duration": "3 min",
+    "difficulty": "Beginner",
+    "description": "Cardio exercise with AI monitoring of knee height and posture.",
+    "image": "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Run in place bringing knees up towards chest",
+    "tags": ["cardio", "legs", "warm-up"],
+    "pose_template": {
+      "key_angles": {
+        "knee_lift": { "min": 90, "max": 120 }
+      },
+      "keypoints": ["nose", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "11",
+    "title": "Jumping Jacks",
+    "duration": "4 min",
+    "difficulty": "Beginner",
+    "description": "Classic cardio move with AI feedback on coordination and form.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Jump feet apart while raising arms, return to start",
+    "tags": ["cardio", "coordination", "full-body"],
+    "pose_template": {
+      "key_angles": {
+        "arm_raise": { "min": 160, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_wrist", "right_wrist", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "12",
+    "title": "Bicycle Crunches",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Target obliques with AI monitoring of rotation and leg position.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Lying down, alternate elbow to opposite knee",
+    "tags": ["core", "obliques", "abs"],
+    "pose_template": {
+      "key_angles": {
+        "knee_bend": { "min": 70, "max": 110 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "13",
+    "title": "Wall Sits",
+    "duration": "8 min",
+    "difficulty": "Intermediate",
+    "description": "Isometric leg exercise with AI monitoring of posture and angle.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Lean against wall in sitting position, hold for time",
+    "tags": ["legs", "endurance", "isometric"],
+    "pose_template": {
+      "key_angles": {
+        "knee": { "min": 85, "max": 95 },
+        "hip": { "min": 85, "max": 95 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "14",
+    "title": "Russian Twists",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Core rotation exercise with AI feedback on trunk movement.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Seated, lean back, rotate torso side to side",
+    "tags": ["core", "obliques", "rotation"],
+    "pose_template": {
+      "key_angles": {
+        "torso_lean": { "min": 30, "max": 60 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "15",
+    "title": "Calf Raises",
+    "duration": "4 min",
+    "difficulty": "Beginner",
+    "description": "Strengthen calves with AI monitoring of heel elevation.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Rise up on toes, lower slowly",
+    "tags": ["calves", "lower-leg", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "ankle": { "min": 20, "max": 45 }
+      },
+      "keypoints": ["left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "16",
+    "title": "Pike Push-ups",
+    "duration": "6 min",
+    "difficulty": "Advanced",
+    "description": "Shoulder-focused push-ups with AI analysis of pike position.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Downward dog position, lower head towards ground",
+    "tags": ["shoulders", "arms", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 40, "max": 70 },
+        "shoulder": { "min": 60, "max": 120 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "17",
+    "title": "Glute Bridges",
+    "duration": "5 min",
+    "difficulty": "Beginner",
+    "description": "Activate glutes with AI monitoring of hip extension.",
+    "image": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Lying on back, lift hips up squeezing glutes",
+    "tags": ["glutes", "hips", "activation"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 160, "max": 185 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "18",
+    "title": "Lateral Lunges",
+    "duration": "6 min",
+    "difficulty": "Intermediate",
+    "description": "Side-to-side movement with AI feedback on lateral stability.",
+    "image": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Step wide to side, lower into lunge position",
+    "tags": ["legs", "lateral", "mobility"],
+    "pose_template": {
+      "key_angles": {
+        "knee": { "min": 70, "max": 120 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "19",
+    "title": "Diamond Push-ups",
+    "duration": "5 min",
+    "difficulty": "Advanced",
+    "description": "Tricep-focused push-ups with AI monitoring of hand position.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Push-ups with hands in diamond shape",
+    "tags": ["triceps", "chest", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "elbow": { "min": 45, "max": 90 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "20",
+    "title": "Step-ups",
+    "duration": "7 min",
+    "difficulty": "Intermediate",
+    "description": "Unilateral leg exercise with AI monitoring of balance and control.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Step up onto platform, step down with control",
+    "tags": ["legs", "balance", "unilateral"],
+    "pose_template": {
+      "key_angles": {
+        "knee": { "min": 80, "max": 120 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "21",
+    "title": "Bear Crawl",
+    "duration": "4 min",
+    "difficulty": "Intermediate",
+    "description": "Full-body crawling movement with AI posture analysis.",
+    "image": "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Crawl forward on hands and feet, knees off ground",
+    "tags": ["full-body", "core", "coordination"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "22",
+    "title": "Single Leg Deadlifts",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Balance and strength exercise with AI monitoring of hip hinge.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Balance on one leg, hinge at hip, reach down",
+    "tags": ["balance", "hamstrings", "glutes"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 45, "max": 90 },
+        "standing_knee": { "min": 170, "max": 185 }
+      },
+      "keypoints": ["nose", "left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "23",
+    "title": "Tricep Extensions",
+    "duration": "5 min",
+    "difficulty": "Beginner",
+    "description": "Isolated tricep work with AI monitoring of elbow position.",
+    "image": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Extend arms overhead, lower forearms behind head",
+    "tags": ["triceps", "arms", "isolation"],
+    "pose_template": {
+      "key_angles": {
+        "elbow": { "min": 30, "max": 160 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "24",
+    "title": "Superman",
+    "duration": "5 min",
+    "difficulty": "Beginner",
+    "description": "Back strengthening exercise with AI monitoring of extension.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Lying face down, lift chest and legs off ground",
+    "tags": ["back", "core", "posterior"],
+    "pose_template": {
+      "key_angles": {
+        "spine_extension": { "min": 15, "max": 30 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "25",
+    "title": "Leg Raises",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Lower ab exercise with AI monitoring of leg position.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Lying on back, raise legs to 90 degrees",
+    "tags": ["abs", "core", "lower-abs"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 80, "max": 100 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "26",
+    "title": "Box Jumps",
+    "duration": "6 min",
+    "difficulty": "Advanced",
+    "description": "Explosive jumping exercise with AI monitoring of landing mechanics.",
+    "image": "https://images.unsplash.com/photo-1567013127542-490d757e51cd?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Jump onto box, step down with control",
+    "tags": ["explosive", "legs", "power"],
+    "pose_template": {
+      "key_angles": {
+        "knee_bend": { "min": 60, "max": 110 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "27",
+    "title": "Side Planks",
+    "duration": "8 min",
+    "difficulty": "Intermediate",
+    "description": "Lateral core stability with AI monitoring of alignment.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Side plank position, hold with straight line",
+    "tags": ["core", "obliques", "stability"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "28",
+    "title": "Turkish Get-ups",
+    "duration": "10 min",
+    "difficulty": "Advanced",
+    "description": "Complex movement pattern with AI monitoring of all phases.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Complex movement from lying to standing with weight overhead",
+    "tags": ["full-body", "mobility", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "shoulder": { "min": 170, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "29",
+    "title": "Pistol Squats",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Single leg squat with AI monitoring of balance and depth.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Single leg squat, other leg extended forward",
+    "tags": ["legs", "balance", "unilateral"],
+    "pose_template": {
+      "key_angles": {
+        "standing_knee": { "min": 70, "max": 120 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "30",
+    "title": "Handstand Push-ups",
+    "duration": "6 min",
+    "difficulty": "Advanced",
+    "description": "Inverted push-ups with AI monitoring of vertical alignment.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Handstand position, lower head towards ground",
+    "tags": ["shoulders", "arms", "inverted"],
+    "pose_template": {
+      "key_angles": {
+        "shoulder": { "min": 170, "max": 185 }
+      },
+      "keypoints": ["left_wrist", "right_wrist", "left_elbow", "right_elbow", "left_shoulder", "right_shoulder"]
+    }
+  },
+  {
+    "id": "31",
+    "title": "Farmer's Walk",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Loaded carry exercise with AI monitoring of posture.",
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Walk while carrying heavy weights at sides",
+    "tags": ["strength", "grip", "core"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 170, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "32",
+    "title": "Rowing Motion",
+    "duration": "7 min",
+    "difficulty": "Intermediate",
+    "description": "Pulling exercise with AI monitoring of rowing mechanics.",
+    "image": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Pull elbows back, squeeze shoulder blades",
+    "tags": ["back", "arms", "posture"],
+    "pose_template": {
+      "key_angles": {
+        "elbow": { "min": 70, "max": 120 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "33",
+    "title": "Reverse Lunges",
+    "duration": "6 min",
+    "difficulty": "Beginner",
+    "description": "Backward stepping lunges with AI monitoring of balance.",
+    "image": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Step backward into lunge position",
+    "tags": ["legs", "balance", "glutes"],
+    "pose_template": {
+      "key_angles": {
+        "front_knee": { "min": 80, "max": 100 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "34",
+    "title": "Hollow Body Hold",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Core stability exercise with AI monitoring of body position.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Lying on back, hold hollow position with arms and legs raised",
+    "tags": ["core", "stability", "abs"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 120, "max": 140 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "35",
+    "title": "Archer Push-ups",
+    "duration": "7 min",
+    "difficulty": "Advanced",
+    "description": "Unilateral push-up variation with AI monitoring of weight shift.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Push-up with weight shifted to one arm",
+    "tags": ["chest", "arms", "unilateral"],
+    "pose_template": {
+      "key_angles": {
+        "working_elbow": { "min": 45, "max": 90 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "36",
+    "title": "Curtsy Lunges",
+    "duration": "6 min",
+    "difficulty": "Intermediate",
+    "description": "Multi-planar lunge with AI monitoring of hip mobility.",
+    "image": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Step behind and across into curtsy position",
+    "tags": ["legs", "glutes", "mobility"],
+    "pose_template": {
+      "key_angles": {
+        "front_knee": { "min": 80, "max": 110 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "37",
+    "title": "Dead Bug",
+    "duration": "5 min",
+    "difficulty": "Beginner",
+    "description": "Core stability exercise with AI monitoring of opposite limb movement.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Lying on back, extend opposite arm and leg",
+    "tags": ["core", "stability", "coordination"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 85, "max": 95 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "38",
+    "title": "Inchworms",
+    "duration": "4 min",
+    "difficulty": "Intermediate",
+    "description": "Dynamic movement with AI monitoring of crawling mechanics.",
+    "image": "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Walk hands out to plank, walk back to standing",
+    "tags": ["full-body", "dynamic", "flexibility"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "39",
+    "title": "Single Arm Plank",
+    "duration": "6 min",
+    "difficulty": "Advanced",
+    "description": "Advanced plank variation with AI monitoring of stability.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Plank position with one arm extended forward",
+    "tags": ["core", "stability", "unilateral"],
+    "pose_template": {
+      "key_angles": {
+        "spine": { "min": 165, "max": 185 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "40",
+    "title": "Reverse Plank",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Posterior chain plank with AI monitoring of hip extension.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Plank position facing up, hands behind body",
+    "tags": ["posterior", "core", "shoulders"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 170, "max": 185 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "41",
+    "title": "Bulgarian Split Squats",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Rear foot elevated split squat with AI monitoring of balance.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Rear foot elevated, lower into single leg squat",
+    "tags": ["legs", "unilateral", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "front_knee": { "min": 70, "max": 110 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "42",
+    "title": "L-Sits",
+    "duration": "5 min",
+    "difficulty": "Advanced",
+    "description": "Static hold exercise with AI monitoring of hip flexion.",
+    "image": "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
+    "category": "Core",
+    "instructions": "Support body weight, legs extended parallel to ground",
+    "tags": ["core", "hip-flexors", "strength"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 85, "max": 95 }
+      },
+      "keypoints": ["left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_knee", "right_knee"]
+    }
+  },
+  {
+    "id": "43",
+    "title": "Shrimp Squats",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Advanced single leg squat with AI monitoring of flexibility.",
+    "image": "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
+    "category": "Lower Body",
+    "instructions": "Single leg squat with other leg held behind",
+    "tags": ["legs", "flexibility", "balance"],
+    "pose_template": {
+      "key_angles": {
+        "standing_knee": { "min": 60, "max": 120 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "44",
+    "title": "Sprawls",
+    "duration": "4 min",
+    "difficulty": "Intermediate",
+    "description": "High-intensity movement with AI monitoring of transition speed.",
+    "image": "https://images.unsplash.com/photo-1567013127542-490d757e51cd?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Squat, jump back to plank, return to squat",
+    "tags": ["cardio", "full-body", "explosive"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 45, "max": 120 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip"]
+    }
+  },
+  {
+    "id": "45",
+    "title": "Hindu Push-ups",
+    "duration": "6 min",
+    "difficulty": "Advanced",
+    "description": "Dynamic push-up with AI monitoring of wave motion.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Downward dog to upward dog in flowing motion",
+    "tags": ["shoulders", "chest", "flexibility"],
+    "pose_template": {
+      "key_angles": {
+        "hip": { "min": 45, "max": 180 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "46",
+    "title": "Frog Jumps",
+    "duration": "4 min",
+    "difficulty": "Intermediate",
+    "description": "Explosive jumping movement with AI monitoring of landing mechanics.",
+    "image": "https://images.unsplash.com/photo-1567013127542-490d757e51cd?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Deep squat position, jump forward explosively",
+    "tags": ["explosive", "legs", "cardio"],
+    "pose_template": {
+      "key_angles": {
+        "knee": { "min": 60, "max": 110 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "47",
+    "title": "Broad Jumps",
+    "duration": "5 min",
+    "difficulty": "Intermediate",
+    "description": "Horizontal jumping exercise with AI monitoring of take-off and landing.",
+    "image": "https://images.unsplash.com/photo-1567013127542-490d757e51cd?w=400&h=300&fit=crop",
+    "category": "Cardio",
+    "instructions": "Jump forward as far as possible, land softly",
+    "tags": ["explosive", "power", "legs"],
+    "pose_template": {
+      "key_angles": {
+        "knee": { "min": 70, "max": 120 }
+      },
+      "keypoints": ["left_hip", "right_hip", "left_knee", "right_knee", "left_ankle", "right_ankle"]
+    }
+  },
+  {
+    "id": "48",
+    "title": "Planche Progression",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Advanced calisthenics move with AI monitoring of body angle.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Support body weight horizontally on hands",
+    "tags": ["shoulders", "core", "advanced"],
+    "pose_template": {
+      "key_angles": {
+        "body_angle": { "min": 0, "max": 15 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "49",
+    "title": "Muscle-ups",
+    "duration": "10 min",
+    "difficulty": "Advanced",
+    "description": "Combined pull-up and dip with AI monitoring of transition.",
+    "image": "https://images.unsplash.com/photo-1544033527-78c1f3e3fe16?w=400&h=300&fit=crop",
+    "category": "Upper Body",
+    "instructions": "Pull up and transition to dip position",
+    "tags": ["strength", "upper-body", "advanced"],
+    "pose_template": {
+      "key_angles": {
+        "shoulder": { "min": 45, "max": 180 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_elbow", "right_elbow", "left_wrist", "right_wrist"]
+    }
+  },
+  {
+    "id": "50",
+    "title": "Human Flag Progression",
+    "duration": "8 min",
+    "difficulty": "Advanced",
+    "description": "Advanced lateral hold with AI monitoring of body alignment.",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    "category": "Full Body",
+    "instructions": "Hold body horizontally from vertical pole",
+    "tags": ["strength", "core", "advanced"],
+    "pose_template": {
+      "key_angles": {
+        "body_angle": { "min": 85, "max": 95 }
+      },
+      "keypoints": ["nose", "left_shoulder", "right_shoulder", "left_hip", "right_hip", "left_ankle", "right_ankle"]
+    }
+  }
+]

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ExerciseCard from "./ExerciseCard";
 import { Button } from "@/components/ui/button";
 import { Search, Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import exercisesData from "@/data/exercises.json";
 
 interface Exercise {
   id: string;
@@ -12,6 +13,12 @@ interface Exercise {
   description: string;
   image: string;
   category: string;
+  instructions?: string;
+  tags?: string[];
+  pose_template?: {
+    key_angles: Record<string, { min: number; max: number }>;
+    keypoints: string[];
+  };
 }
 
 interface ExerciseLibraryProps {
@@ -21,70 +28,24 @@ interface ExerciseLibraryProps {
 const ExerciseLibrary = ({ onStartExercise }: ExerciseLibraryProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [exercises, setExercises] = useState<Exercise[]>([]);
 
-  const exercises: Exercise[] = [
-    {
-      id: "1",
-      title: "Push-ups",
-      duration: "5 min",
-      difficulty: "Beginner",
-      description: "Perfect your push-up form with real-time AI feedback on arm position and body alignment.",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
-      category: "Upper Body"
-    },
-    {
-      id: "2", 
-      title: "Squats",
-      duration: "8 min",
-      difficulty: "Beginner",
-      description: "Master proper squat technique with AI monitoring of knee alignment and depth.",
-      image: "https://images.unsplash.com/photo-1566241134043-de03b9eb9041?w=400&h=300&fit=crop",
-      category: "Lower Body"
-    },
-    {
-      id: "3",
-      title: "Planks",
-      duration: "10 min",
-      difficulty: "Intermediate",
-      description: "Hold perfect plank position with AI guidance on core engagement and spine alignment.",
-      image: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=300&fit=crop",
-      category: "Core"
-    },
-    {
-      id: "4",
-      title: "Deadlifts", 
-      duration: "12 min",
-      difficulty: "Advanced",
-      description: "Execute proper deadlift form with AI analysis of hip hinge movement and back position.",
-      image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop",
-      category: "Full Body"
-    },
-    {
-      id: "5",
-      title: "Lunges",
-      duration: "6 min", 
-      difficulty: "Intermediate",
-      description: "Improve balance and form with AI feedback on lunge depth and knee tracking.",
-      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-      category: "Lower Body"
-    },
-    {
-      id: "6",
-      title: "Mountain Climbers",
-      duration: "4 min",
-      difficulty: "Advanced", 
-      description: "Maintain proper form during high-intensity movement with real-time pose analysis.",
-      image: "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=400&h=300&fit=crop",
-      category: "Cardio"
-    }
-  ];
+  // Load exercises from JSON data
+  useEffect(() => {
+    setExercises(exercisesData as Exercise[]);
+  }, []);
 
   const filteredExercises = exercises.filter(exercise => {
     const matchesSearch = exercise.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         exercise.description.toLowerCase().includes(searchTerm.toLowerCase());
+                         exercise.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         exercise.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesDifficulty = selectedDifficulty === "All" || exercise.difficulty === selectedDifficulty;
-    return matchesSearch && matchesDifficulty;
+    const matchesCategory = selectedCategory === "All" || exercise.category === selectedCategory;
+    return matchesSearch && matchesDifficulty && matchesCategory;
   });
+
+  const categories = ["All", ...Array.from(new Set(exercises.map(ex => ex.category)))];
 
   return (
     <section className="py-16 px-6">
@@ -99,45 +60,65 @@ const ExerciseLibrary = ({ onStartExercise }: ExerciseLibraryProps) => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="relative flex-1">
+        <div className="flex flex-col gap-4 mb-8">
+          <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
-              placeholder="Search exercises..."
+              placeholder="Search exercises by name, description, or tags..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-card/50 backdrop-blur-sm border-border/50"
             />
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant={selectedDifficulty === "All" ? "default" : "outline"}
-              onClick={() => setSelectedDifficulty("All")}
-              size="sm"
-            >
-              All
-            </Button>
-            <Button
-              variant={selectedDifficulty === "Beginner" ? "default" : "outline"}
-              onClick={() => setSelectedDifficulty("Beginner")}
-              size="sm"
-            >
-              Beginner
-            </Button>
-            <Button
-              variant={selectedDifficulty === "Intermediate" ? "default" : "outline"}
-              onClick={() => setSelectedDifficulty("Intermediate")}
-              size="sm"
-            >
-              Intermediate
-            </Button>
-            <Button
-              variant={selectedDifficulty === "Advanced" ? "default" : "outline"}
-              onClick={() => setSelectedDifficulty("Advanced")}
-              size="sm"
-            >
-              Advanced
-            </Button>
+          
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Difficulty Filter */}
+            <div className="flex gap-2">
+              <span className="text-sm text-muted-foreground self-center min-w-fit">Difficulty:</span>
+              <Button
+                variant={selectedDifficulty === "All" ? "default" : "outline"}
+                onClick={() => setSelectedDifficulty("All")}
+                size="sm"
+              >
+                All
+              </Button>
+              <Button
+                variant={selectedDifficulty === "Beginner" ? "default" : "outline"}
+                onClick={() => setSelectedDifficulty("Beginner")}
+                size="sm"
+              >
+                Beginner
+              </Button>
+              <Button
+                variant={selectedDifficulty === "Intermediate" ? "default" : "outline"}
+                onClick={() => setSelectedDifficulty("Intermediate")}
+                size="sm"
+              >
+                Intermediate
+              </Button>
+              <Button
+                variant={selectedDifficulty === "Advanced" ? "default" : "outline"}
+                onClick={() => setSelectedDifficulty("Advanced")}
+                size="sm"
+              >
+                Advanced
+              </Button>
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex gap-2 flex-wrap">
+              <span className="text-sm text-muted-foreground self-center min-w-fit">Category:</span>
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  onClick={() => setSelectedCategory(category)}
+                  size="sm"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
 
