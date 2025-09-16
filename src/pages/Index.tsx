@@ -18,6 +18,7 @@ interface Exercise {
   description: string;
   image: string;
   category: string;
+  tags: string[];
 }
 
 type View = "home" | "exercises" | "workout" | "dashboard" | "leaderboard" | "profile" | "settings";
@@ -80,6 +81,8 @@ const Index = () => {
 
           <PoseDetection 
             exerciseName={selectedExercise.title}
+            exerciseCategory={selectedExercise.category}
+            exerciseTags={selectedExercise.tags || []}
             onComplete={handleCompleteWorkout}
           />
         </div>

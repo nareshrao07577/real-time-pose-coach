@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Search, Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import exercisesData from "@/data/exercises.json";
+import { getExerciseImage } from "@/utils/exerciseImages";
 
 interface Exercise {
   id: string;
@@ -131,7 +132,7 @@ const ExerciseLibrary = ({ onStartExercise }: ExerciseLibraryProps) => {
               duration={exercise.duration}
               difficulty={exercise.difficulty}
               description={exercise.description}
-              image={exercise.image}
+              image={getExerciseImage(exercise.title)}
               category={exercise.category}
               tags={exercise.tags || []}
               onStart={() => onStartExercise(exercise)}

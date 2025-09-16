@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Camera, CameraOff, CheckCircle, AlertCircle, Activity, RefreshCw } from "lucide-react";
+import { Camera, CameraOff, CheckCircle, AlertCircle, Activity, RefreshCw, User } from "lucide-react";
 import { usePoseDetection } from "@/hooks/usePoseDetection";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { getBodyDiagram, getTargetedMuscles } from "@/utils/bodyDiagrams";
 
 interface PoseDetectionProps {
   exerciseName: string;
+  exerciseCategory: string;
+  exerciseTags: string[];
   onComplete?: () => void;
 }
 
-const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
+const PoseDetection = ({ exerciseName, exerciseCategory, exerciseTags, onComplete }: PoseDetectionProps) => {
   const [sessionAccuracy, setSessionAccuracy] = useState(0);
   
   const {
@@ -147,12 +150,38 @@ const PoseDetection = ({ exerciseName, onComplete }: PoseDetectionProps) => {
           </div>
         </Card>
 
-        {/* Feedback Panel */}
+        {/* Targeted Muscles & Feedback Panel */}
         <Card className="p-6 bg-gradient-card">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <User className="w-5 h-5 text-primary" />
+            Targeted Muscles
+          </h3>
+          <div className="flex items-start gap-4 mb-6">
+            <div className="flex-shrink-0">
+              <img
+                src={getBodyDiagram(exerciseTags, exerciseCategory)}
+                alt={`Body diagram showing targeted muscles`}
+                className="w-16 h-20 object-contain bg-background/50 rounded border border-border/50"
+              />
+            </div>
+            <div className="flex-1">
+              <div className="flex flex-wrap gap-1">
+                {getTargetedMuscles(exerciseTags, exerciseCategory).map((muscle, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
+                  >
+                    {muscle}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <h4 className="text-md font-semibold mb-3 flex items-center gap-2">
             {getFeedbackIcon()}
             AI Feedback
-          </h3>
+          </h4>
           <div className="space-y-4">
             <div className={`p-4 rounded-lg bg-muted/20 ${getFeedbackColor()}`}>
               <p className="font-medium">{feedback}</p>
