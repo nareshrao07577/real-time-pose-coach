@@ -132,6 +132,8 @@ const ExerciseLibrary = ({ onStartExercise }: ExerciseLibraryProps) => {
               difficulty={exercise.difficulty}
               description={exercise.description}
               image={exercise.image}
+              category={exercise.category}
+              tags={exercise.tags || []}
               onStart={() => onStartExercise(exercise)}
             />
           ))}
