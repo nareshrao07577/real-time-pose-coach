@@ -153,7 +153,10 @@ const Index = () => {
       {user ? (
         <>
           <Navigation currentView={currentView} onViewChange={setCurrentView} />
-          <HeroSection />
+          <HeroSection 
+            onStartWorkout={() => setCurrentView("exercises")}
+            onViewExercises={() => setCurrentView("exercises")}
+          />
           <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40">
             <Button 
               variant="hero" 
@@ -167,7 +170,10 @@ const Index = () => {
         </>
       ) : (
         <>
-          <HeroSection />
+          <HeroSection 
+            onStartWorkout={() => window.location.href = "/auth"}
+            onViewExercises={() => window.location.href = "/auth"}
+          />
           <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
             <Button 
               variant="hero" 

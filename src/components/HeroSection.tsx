@@ -2,7 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Play, Target, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-fitness.jpg";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onStartWorkout?: () => void;
+  onViewExercises?: () => void;
+}
+
+const HeroSection = ({ onStartWorkout, onViewExercises }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -39,11 +44,20 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button variant="hero" size="xl" className="group">
+          <Button 
+            variant="hero" 
+            size="xl" 
+            className="group"
+            onClick={onStartWorkout}
+          >
             <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
             Start Workout
           </Button>
-          <Button variant="outline" size="xl">
+          <Button 
+            variant="outline" 
+            size="xl"
+            onClick={onViewExercises}
+          >
             <Target className="w-5 h-5" />
             View Exercises
           </Button>
