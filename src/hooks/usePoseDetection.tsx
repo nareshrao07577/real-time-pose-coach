@@ -329,11 +329,11 @@ export const usePoseDetection = ({
 
       const pose = new Pose({
         locateFile: (file) => {
-          return `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5/${file}`;
+          return `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1675469404/${file}`;
         }
       });
 
-      pose.setOptions({
+      await pose.setOptions({
         modelComplexity: 1,
         smoothLandmarks: true,
         enableSegmentation: false,
@@ -343,11 +343,19 @@ export const usePoseDetection = ({
       });
 
       pose.onResults(onResults);
+      
+      // Wait for pose to be ready
+      await new Promise((resolve) => {
+        setTimeout(resolve, 100);
+      });
+      
       poseRef.current = pose;
+      console.log('MediaPipe Pose initialized successfully');
 
     } catch (err) {
       console.error('Error initializing pose:', err);
-      setError('Failed to initialize AI pose detection');
+      setError(`Failed to initialize AI pose detection: ${err.message}`);
+      throw err;
     } finally {
       setIsLoading(false);
     }
@@ -366,11 +374,16 @@ export const usePoseDetection = ({
 
       // Initialize pose if not already done
       if (!poseRef.current) {
+        console.log('Initializing MediaPipe Pose...');
         await initializePose();
       }
 
-      if (!videoRef.current || !poseRef.current) {
-        throw new Error('Video element or pose not initialized');
+      if (!videoRef.current) {
+        throw new Error('Video element not found');
+      }
+
+      if (!poseRef.current) {
+        throw new Error('MediaPipe Pose failed to initialize');
       }
 
       // Get user media
