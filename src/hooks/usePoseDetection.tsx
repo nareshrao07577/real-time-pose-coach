@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
+import * as mediapipePose from '@mediapipe/pose';
 import { Pose } from '@mediapipe/pose';
 import { Camera } from '@mediapipe/camera_utils';
 
@@ -328,7 +329,7 @@ export const usePoseDetection = ({
 
       const pose = new Pose({
         locateFile: (file) => {
-          return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+          return `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5/${file}`;
         }
       });
 
